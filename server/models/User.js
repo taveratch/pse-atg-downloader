@@ -1,4 +1,4 @@
-import Sequelize from 'Sequelize';
+import Sequelize from 'sequelize';
 
 export default (sequelize) => {
     return sequelize.define('users', {
@@ -7,7 +7,7 @@ export default (sequelize) => {
             primaryKey: true,
             autoIncrement: true
         },
-        email: Sequelize.STRING,
+        username: Sequelize.STRING,
         password: Sequelize.STRING
     });
 };

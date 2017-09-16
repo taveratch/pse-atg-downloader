@@ -1,23 +1,28 @@
+/*--- Import dependencies ===*/
+import express from 'express';
+import database from 'server/utils/database.js';
+import bodyParser from 'body-parser';
+import morgan from 'morgan';
+import cors from 'cors';
 
-import database from './utils/database';
-import authAPI from './api/auth';
-import siteAPI from './api/site';
-import inventoryAPI from './api/inventory';
-import log4js from './utils/log4js';
+/*--- Import APIs ----*/
+import AuthAPI from 'server/api/auth';
 
-const PORT = process.env.PORT || 3000;
+let app = express();
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true}));
+app.use(cors());
+app.use(morgan('dev'));
 
-// log4js();
-
-const app = require('./app');
+const PORT = process.env.PORT || 3001;
 
 (async () => {
-  await database.start();
-  app.use('/auth', authAPI);
-  app.use('/site', siteAPI);
-  app.use('/inventory', inventoryAPI);
+    // Establish database connection.
+    await database.start();
+
+    app.use('/api/auth', AuthAPI);
 })();
 
 app.listen(PORT, () => {
-  console.log(`App listening on port ${PORT}!`);
+  console.log(`Server is running on port ${PORT}`);
 });
