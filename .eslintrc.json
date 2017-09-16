@@ -5,6 +5,7 @@
     },
     "extends": "eslint:recommended",
     "parserOptions": {
+        "ecmaVersion": 8,
         "ecmaFeatures": {
             "experimentalObjectRestSpread": true,
             "jsx": true
@@ -17,7 +18,7 @@
     "rules": {
         "indent": [
             "error",
-            "space"
+            4
         ],
         "linebreak-style": [
             "error",
@@ -30,6 +31,11 @@
         "semi": [
             "error",
             "always"
-        ]
+        ],
+        "no-unused-vars": [0, {
+            "vars": "all",
+            "args": "none"
+        }],
+        "no-console": "off"
     }
 }

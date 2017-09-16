@@ -9,6 +9,10 @@
   src: url('./fonts/sukhumvit-set/SukhumvitSet-Text.ttf');
 }
 
+input, button {
+  font-family: 'Sukhumvit';
+}
+
 html,body {
   font-family: 'Sukhumvit' !important;
   height: 100%;
