@@ -85,10 +85,6 @@ html,body {
   height: 100%;
 }
 
-.list-group {
-  margin-bottom: 80px;
-}
-
 .checkbox-container {
 
   input {
@@ -97,4 +93,8 @@ html,body {
 
   display: flex;
   align-items: center;
+}
+
+.form-control::placeholder {
+  color: rgba(0,0,0,0.2);
 }

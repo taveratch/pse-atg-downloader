@@ -79,7 +79,7 @@ export default class Wrapper extends React.Component {
             let url = $('#url')[0].value;
             errorView =
                 <div>
-                    <Label bsStyle="danger">Url is incorrect.</Label>
+                    <Label bsStyle="danger">Url is not correct.</Label>
                     <p className="margin-top">Please insert a correct url with port</p>
                 </div>;
         }
@@ -88,7 +88,7 @@ export default class Wrapper extends React.Component {
                 <div className='col-md-10 col-lg-10 col-sm-10 col-11 box-shadow-heavy bg-faded p-4' style={{ height: '85%', overflow: 'auto', background: 'white' }}>
                     <h5>Inventory Downloader</h5>
                     <div className="d-md-flex d-lg-flex margin-bottom">
-                        <input id="url" className="form-control mt-2" placeholder="http://sysinto999.true.in.th:7878" />
+                        <input id="url" className="form-control mt-2" placeholder="Ex, http://sysinto999.true.in.th:7878" />
                         <div className='d-flex mt-2'>
                             <div className="checkbox-container">
                                 <input type="checkbox" onChange={this.onCheckboxChange.bind(this)} /><span>LAN</span>

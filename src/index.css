@@ -11,7 +11,7 @@ body {
 }
 
 .form-control {
-  border: 1px solid rgba(0,0,0,.06);
+  border: 1px solid rgba(0,0,0,0.15);
   height: 45px;
 }
 
@@ -28,4 +28,8 @@ body {
 .box-shadow-heavy {
   border-radius: 5px;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.04), 0 1px 50px 0 rgba(0, 0, 0, 0.3);
+}
+
+input::placeholder {
+  color: white;
 }
