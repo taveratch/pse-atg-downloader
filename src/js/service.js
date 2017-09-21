@@ -5,13 +5,11 @@ import FileSaver from 'file-saver';
 import 'babel-core/register';
 import 'babel-polyfill';
 
-let PROXY = 'https://cors-anywhere.herokuapp.com/';
-
 let services = {
     getInventoryList: (url) => {
         return new Promise((resolve, reject) => {
             $.ajax({
-                url: PROXY + urlValidator(url),
+                url: window.PROXY_URL + urlValidator(url),
                 headers: {
                     'Authorization': 'Basic dXNlcjpwYXNz'
                 }
@@ -37,19 +35,13 @@ let services = {
       .then(function (content) {
           FileSaver.saveAs(content, 'inventories.zip');
       });
-    },
-    enableProxy: (isLocal) => {
-        if (isLocal)
-            PROXY = '';
-        else
-      PROXY = 'https://cors-anywhere.herokuapp.com/';
     }
 };
 
 const downloadInventory = (url) => {
     return new Promise((resolve, reject) => {
         $.ajax({
-            url: PROXY + url,
+            url: window.PROXY_URL + url,
             headers: {
                 'Authorization': 'Basic dXNlcjpwYXNz'
             }

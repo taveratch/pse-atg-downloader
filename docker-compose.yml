@@ -1,0 +1,41 @@
+version: '2'
+
+services: 
+
+  atg-downloader-client:
+    image: node:boron
+    container_name: atg-downloader-client
+    volumes:
+      - ./:/src/app
+    working_dir: /src/app
+    command: sh -c 'npm install; npm run build'
+  
+  proxy-server:
+    image: node:boron
+    container_name: proxy-server
+    volumes:
+      - ./proxy-server:/src/app
+    working_dir: /src/app
+    command: sh -c 'npm start'
+    ports: 
+      - '3002:3002'
+
+  api-server:
+    image: node:boron
+    container_name: api-server
+    volumes:
+      - ./:/src/app
+    working_dir: /src/app
+    command: sh -c 'npm install; npm run server;'
+    ports: 
+      - '3001:3001'
+
+  nginx:
+    image: nginx
+    volumes:
+      - './build:/usr/share/nginx/html'
+    container_name: atg-downloader-nginx
+    depends_on:
+      - atg-downloader-client
+    ports:
+      - "80:80"

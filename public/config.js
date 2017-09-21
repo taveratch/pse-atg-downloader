@@ -1,0 +1,1 @@
+window.PROXY_URL = 'http://localhost:3002/api?q=';

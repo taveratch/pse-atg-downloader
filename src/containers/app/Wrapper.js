@@ -37,12 +37,6 @@ export default class Wrapper extends React.Component {
         service.downloadAllInventories(this.state.inventories, this.dispatch);
     }
 
-    onCheckboxChange(event) {
-        let checked = event.target.checked;
-        this.dispatch({ type: 'to_local', data: checked });
-        service.enableProxy(checked);
-    }
-
     renderProgressbar(name) {
         if (this.state.downloadedInventories.indexOf(name) < 0 && this.state.downloading)
             return (
@@ -90,9 +84,6 @@ export default class Wrapper extends React.Component {
                     <div className="d-md-flex d-lg-flex margin-bottom">
                         <input id="url" className="form-control mt-2" placeholder="Ex, http://sysinto999.true.in.th:7878" />
                         <div className='d-flex mt-2'>
-                            <div className="checkbox-container">
-                                <input type="checkbox" onChange={this.onCheckboxChange.bind(this)} /><span>LAN</span>
-                            </div>
                             <button className="btn btn-second margin-left" onClick={this.read}>Read</button>
                             <button className="btn btn-second margin-left" disabled={this.state.downloadAllButtonDisabled} onClick={this.downloadAll.bind(this)}>Download all</button>
                         </div>
@@ -101,7 +92,7 @@ export default class Wrapper extends React.Component {
                     <ul className="list-group">
                         {
                             _.map(this.state.inventories, (item, i) => {
-                                return <ul className="list-group-item">
+                                return <ul key={i} className="list-group-item">
                                     {item.name}
                                     <div className="pull-right pull-top full-height flex flex-center flex-middle margin-right">
                                         {self.renderProgressbar(item.name)}
