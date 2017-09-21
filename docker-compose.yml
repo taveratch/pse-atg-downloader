@@ -16,7 +16,7 @@ services:
     volumes:
       - ./proxy-server:/src/app
     working_dir: /src/app
-    command: sh -c 'npm start'
+    command: sh -c 'npm install; npm start'
     ports: 
       - '3002:3002'
 
