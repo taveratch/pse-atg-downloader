@@ -6,7 +6,8 @@ services:
     image: node:latest
     container_name: atg-downloader-client
     volumes:
-      - ./:/
+      - ./:/app
+    working_dir: /app
     command: sh -c 'NODE_PATH=. npm install; npm rebuild node-sass; npm run build;'
   
   proxy-server:
