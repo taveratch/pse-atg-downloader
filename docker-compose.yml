@@ -8,7 +8,7 @@ services:
     volumes:
       - ./:/src/app
     working_dir: /src/app
-    command: sh -c 'NODE_PATH=. npm install; npm rebuild node-sass; npm run build;'
+    command: sh -c 'npm install; npm rebuild node-sass; npm run build;'
   
   proxy-server:
     image: node:latest
