@@ -90,7 +90,7 @@
     "proxy-server": "NODE_PATH=. NODE_ENV=development nodemon --exec npm run babel-node -- proxy-server/server.js",
     "server": "NODE_PATH=. NODE_ENV=development nodemon --exec npm run babel-node -- server/",
     "babel-node": "babel-node",
-    "build": "cross-env NODE_PATH=. node scripts/build.js",
+    "build": "NODE_PATH=. node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom"
   },
   "jest": {
