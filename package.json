@@ -84,12 +84,12 @@
     "write": "^1.0.3"
   },
   "scripts": {
-    "dev": "NODE_PATH=. concurrently \"npm run client\" \"npm run server\" \"npm run proxy-server\"",
-    "client": "node scripts/start.js",
-    "proxy-server": "NODE_ENV=development nodemon --exec npm run babel-node -- proxy-server/server.js",
-    "server": "NODE_ENV=development nodemon --exec npm run babel-node -- server/",
+    "dev": "concurrently \"npm run client\" \"npm run server\" \"npm run proxy-server\"",
+    "client": "NODE_PATH=. node scripts/start.js",
+    "proxy-server": "NODE_PATH=. NODE_ENV=development nodemon --exec npm run babel-node -- proxy-server/server.js",
+    "server": "NODE_PATH=. NODE_ENV=development nodemon --exec npm run babel-node -- server/",
     "babel-node": "babel-node",
-    "build": "node scripts/build.js",
+    "build": "NODE_PATH=. node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom"
   },
   "jest": {
