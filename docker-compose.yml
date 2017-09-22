@@ -3,7 +3,7 @@ version: '2'
 services: 
 
   atg-downloader-client:
-    image: node:boron
+    image: node:latest
     container_name: atg-downloader-client
     volumes:
       - ./:/src/app
@@ -11,7 +11,7 @@ services:
     command: sh -c 'NODE_PATH=. npm install; npm run build'
   
   proxy-server:
-    image: node:boron
+    image: node:latest
     container_name: proxy-server
     volumes:
       - ./proxy-server:/src/app
@@ -21,7 +21,7 @@ services:
       - '3002:3002'
 
   api-server:
-    image: node:boron
+    image: node:latest
     container_name: api-server
     volumes:
       - ./:/src/app
