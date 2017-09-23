@@ -87,8 +87,8 @@
   "scripts": {
     "dev": "concurrently \"npm run client\" \"npm run server\" \"npm run proxy-server\"",
     "client": "NODE_PATH=. node scripts/start.js",
-    "proxy-server": "NODE_PATH=. NODE_ENV=development nodemon --exec npm run babel-node -- proxy-server/server.js",
-    "server": "NODE_PATH=. NODE_ENV=development nodemon --exec npm run babel-node -- server/",
+    "proxy-server": "NODE_PATH=. nodemon --exec npm run babel-node -- proxy-server/server.js",
+    "server": "NODE_PATH=. nodemon --exec npm run babel-node -- server/",
     "babel-node": "babel-node",
     "build": "NODE_PATH=. node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom"
