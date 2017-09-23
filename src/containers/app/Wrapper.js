@@ -1,6 +1,6 @@
 import React from 'react';
 import { Well, Label, Row, Col, Button, ListGroup, ListGroupItem, ProgressBar } from 'react-bootstrap';
-import vm from './viewmodel';
+import vm from 'src/containers/app/viewmodel';
 import write from 'write';
 import $ from 'jquery';
 import _ from 'lodash';

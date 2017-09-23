@@ -2,9 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { signin } from 'src/actions/auth';
 
-import Header from './Header';
+import Header from 'src/containers/signin/Header';
 
-import './style.scss';
+import 'src/containers/signin/style.scss';
 
 class SignIn extends React.Component {
 

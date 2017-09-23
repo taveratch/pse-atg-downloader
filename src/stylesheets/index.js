@@ -1,2 +1,2 @@
-import './style.scss';
-import './sticky-footer.scss';
+import 'src/stylesheets/style.scss';
+import 'src/stylesheets/sticky-footer.scss';

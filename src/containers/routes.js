@@ -1,10 +1,10 @@
 import { Router, Route, Switch } from 'react-router-dom';
 import React from 'react';
-import EnsureSignedInContainer from './ensure-signedin-container';
-import Wrapper from './app/Wrapper';
-import SignIn from './signin/SignIn';
-import PrivateRoute from './PrivateRoute';
-import history from './history';
+import EnsureSignedInContainer from 'src/containers/ensure-signedin-container';
+import Wrapper from 'src/containers/app/Wrapper';
+import SignIn from 'src/containers/signin/SignIn';
+import PrivateRoute from 'src/containers/PrivateRoute';
+import history from 'src/containers/history';
 import { connect } from 'react-redux';
 import { authenticate } from 'src/services/auth';
 import { AuthController } from 'src/controllers';

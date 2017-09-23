@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Root from 'src/containers/root';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import './index.css';
-import './stylesheets';
+import 'src/index.css';
+import 'src/stylesheets';
 
 const App = () => (
   <MuiThemeProvider>

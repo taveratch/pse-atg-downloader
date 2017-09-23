@@ -1,1 +1,1 @@
-export * from './auth.js';
+export * from 'src/controllers/auth.js';

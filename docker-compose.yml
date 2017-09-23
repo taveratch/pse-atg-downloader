@@ -9,6 +9,8 @@ services:
       - ./:/src/app
     working_dir: /src/app
     command: sh -c 'npm install; npm run client;'
+    ports:
+      - '3000:3000'
   
   # proxy-server:
   #   image: node:latest
