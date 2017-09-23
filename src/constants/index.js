@@ -1,5 +1,5 @@
 // -- endpoint --
-export const API_ENDPOINT = 'http://localhost:3001/api';
+export const API_ENDPOINT = 'https://padungsilpa.group/api';
 
 // -- redux state --
 export const SIGNIN = 'SIGNIN';

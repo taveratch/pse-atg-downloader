@@ -44,7 +44,7 @@ let options = {
     changeOrigin: true
 };
 
-app.use('/api', proxy(options));
+app.use('/proxy', proxy(options));
 app.listen(PORT, () => {
     console.log(`Proxy server is running on port ${PORT}`);
 });

@@ -1,1 +1,1 @@
-window.PROXY_URL = 'http://localhost:3002/api?q=';
+window.PROXY_URL = 'https://padungsilpa.group/proxy?q=';
