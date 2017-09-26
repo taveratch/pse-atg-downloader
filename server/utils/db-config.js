@@ -16,4 +16,4 @@ const production = {
     PORT: 3306
 };
 
-export default process.env_NODE_ENV === 'production' ? production : development;
+export default process.env.NODE_ENV === 'production' ? production : development;
