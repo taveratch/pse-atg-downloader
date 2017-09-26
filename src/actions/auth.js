@@ -35,11 +35,38 @@ export const signin = (username, password) => {
     return dispatch => {
         AuthController.signin(username, password)
             .then(res => {
+                console.log(res);
                 dispatch({
                     type: SIGNIN_SUCCESS,
                     data: res
                 });
                 history.push('/');
+            })
+            .catch(err => {
+                dispatch({
+                    type: SIGNIN_ERROR,
+                    data: err.message
+                });
+            });
+    };
+};
+
+export const adminSignin = (username, password) => {
+    return dispatch => {
+        AuthController.signin(username, password)
+            .then(res => {
+                if (res.user.is_admin) {
+                    dispatch({
+                        type: SIGNIN_SUCCESS,
+                        data: res
+                    });
+                    history.push('/admin');
+                }
+                else
+                    dispatch({
+                        type: SIGNIN_ERROR,
+                        data: 'Permission denied'
+                    });
             })
             .catch(err => {
                 dispatch({

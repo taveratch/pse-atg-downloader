@@ -8,6 +8,10 @@ export default (sequelize) => {
             autoIncrement: true
         },
         username: Sequelize.STRING,
-        password: Sequelize.STRING
+        password: Sequelize.STRING,
+        is_admin: {
+            type: Sequelize.BOOLEAN,
+            defaultValue: false
+        }
     });
 };

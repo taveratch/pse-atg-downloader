@@ -85,7 +85,7 @@
     "write": "^1.0.3"
   },
   "scripts": {
-    "dev": "concurrently \"npm run client\" \"npm run server\" \"npm run proxy-server\"",
+    "dev": "NODE_ENV=development concurrently \"npm run client\" \"npm run server\" \"npm run proxy-server\"",
     "client": "NODE_PATH=. node scripts/start.js",
     "proxy-server": "NODE_PATH=. nodemon --exec npm run babel-node -- proxy-server/server.js",
     "server": "NODE_PATH=. nodemon --exec npm run babel-node -- server/",

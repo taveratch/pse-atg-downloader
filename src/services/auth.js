@@ -1,10 +1,10 @@
-import { API_ENDPOINT } from 'src/constants';
+import { config } from 'src/constants';
 import rp from 'request-promise';
 
 
 export const authenticate = token => {
     let options = {
-        uri: `${API_ENDPOINT}/auth/authenticate`,
+        uri: `${config.API_ENDPOINT}/auth/authenticate`,
         method: 'POST',
         body: {
             token: token || ''
@@ -15,9 +15,10 @@ export const authenticate = token => {
     return rp(options);
 };
 
+
 export const signin = (username, password) => {
     let options = {
-        uri: `${API_ENDPOINT}/auth/signin`,
+        uri: `${config.API_ENDPOINT}/auth/signin`,
         method: 'POST',
         body: {
             username,

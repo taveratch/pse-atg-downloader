@@ -1,6 +1,8 @@
 import Sequelize from 'sequelize';
 
-import { USERNAME, PASSWORD, DB_NAME, HOST, PORT } from './db-config';
+import config from './db-config';
+
+let { USERNAME, PASSWORD, DB_NAME, HOST, PORT } = config;
 
 let sequelize = null;
 export default {

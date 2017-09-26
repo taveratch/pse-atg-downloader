@@ -9,7 +9,6 @@ let auth = express();
  * API route for verify the token. no username or password required.
  */
 auth.post('/authenticate', async (req, res) => {
-    console.log(req.body);
     let token = req.body.token;
     /*If there is a token in a request, then start verify it*/
     if(token) {

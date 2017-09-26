@@ -8,7 +8,7 @@ class PrivateRoute extends React.Component {
         if(this.props.authed)
             return <Route {...this.props} />;
         else 
-            return <Redirect to={{ pathname: '/signin' }} />;
+            return <Redirect to={{ pathname: this.props.redirect }} />;
     }
 }
 

@@ -8,6 +8,7 @@ import history from 'src/containers/history';
 import { connect } from 'react-redux';
 import { authenticate } from 'src/services/auth';
 import { AuthController } from 'src/controllers';
+import AdminRoutes from 'src/containers/admin/routes';
 
 
 class Routes extends React.Component {
@@ -42,7 +43,7 @@ class Routes extends React.Component {
           <Router history={history}>
             <Switch>
               <Route exact path='/signin' component={SignIn} />
-              <PrivateRoute exact path='/' component={Wrapper} authed={this.state.authed || this.props.isSignedIn} />
+              <PrivateRoute exact path='/' redirect='/signin' component={Wrapper} authed={this.state.authed || this.props.isSignedIn} />
             </Switch>
           </Router>
         );

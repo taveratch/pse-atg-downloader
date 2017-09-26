@@ -100,7 +100,7 @@ class AuthController {
     }
 
     filterUserInfo(user) {
-        const publicInfo = ['username'];
+        const publicInfo = ['username', 'is_admin'];
         return _.pick(user, publicInfo);
     }
 }
