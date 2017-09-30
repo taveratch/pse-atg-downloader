@@ -12,46 +12,14 @@ import AdminRoutes from 'src/containers/admin/routes';
 
 
 class Routes extends React.Component {
-    
-    constructor(props) {
-        super(props);
-        this.state = {
-            authed: false,
-            loading: true
-        };
-    }
-
-    componentDidMount() {
-        authenticate(AuthController.getToken())
-          .then(res => {
-              this.setState({
-                  authed: res.success,
-                  loading: false
-              });
-          })
-          .catch(err => {
-              this.setState({
-                  authed: false,
-                  loading: false
-              });
-          });
-    }
-
     render() {
-        if(this.state.loading) return <p>Loading</p>;
         return (
-          <Router history={history}>
-            <Switch>
-              <Route exact path='/signin' component={SignIn} />
-              <PrivateRoute exact path='/' redirect='/signin' component={Wrapper} authed={this.state.authed || this.props.isSignedIn} />
-            </Switch>
-          </Router>
+            <Router history={history}>
+                <Switch>
+                    <Route exact path='/' component={Wrapper} />
+                </Switch>
+            </Router>
         );
     }
 }
-
-const mapState = ({ auth }) => ({
-    isSignedIn: auth.isSuccess
-});
-
-export default connect(mapState)(Routes);
+export default Routes;

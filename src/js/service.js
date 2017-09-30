@@ -1,3 +1,4 @@
+/*eslint no-undef: "off"*/
 import $ from 'jquery';
 import _ from 'lodash';
 import JSZip from 'jszip';
@@ -5,22 +6,24 @@ import FileSaver from 'file-saver';
 import 'babel-core/register';
 import 'babel-polyfill';
 
+let proxyPrefix = process.env.NODE_ENV !== 'production' ? 'http://localhost:5000' : '';
 let services = {
     getInventoryList: (url) => {
         return new Promise((resolve, reject) => {
-            $.ajax({
-                url: window.PROXY_URL + urlValidator(url),
+            let options = {
                 headers: {
                     'Authorization': 'Basic dXNlcjpwYXNz'
                 }
-            })
-        .done((res) => {
-            resolve(res);
-        })
-        .fail((err) => {
-            console.log(err);
-            reject(err);
-        });
+            };
+            fetch(proxyPrefix + '/proxy?q=' + urlValidator(url), options)
+                .then(json => json.text())
+                .then((res) => {
+                    resolve(res);
+                })
+                .catch((err) => {
+                    console.log(err);
+                    reject(err);
+                });
         });
     },
     downloadAllInventories: async (inventories, dispatcher) => {
@@ -32,27 +35,28 @@ let services = {
             dispatcher({ type: 'downloaded_inventory', data: item.name });
         }
         zip.generateAsync({ type: 'blob' })
-      .then(function (content) {
-          FileSaver.saveAs(content, 'inventories.zip');
-      });
+            .then(function (content) {
+                FileSaver.saveAs(content, 'inventories.zip');
+            });
     }
 };
 
 const downloadInventory = (url) => {
     return new Promise((resolve, reject) => {
-        $.ajax({
-            url: window.PROXY_URL + url,
+        let options = {
             headers: {
                 'Authorization': 'Basic dXNlcjpwYXNz'
             }
-        })
-      .done((res) => {
-          resolve(res);
-      })
-      .fail((err) => {
-          console.log(err);
-          reject(err);
-      });
+        };
+        fetch(proxyPrefix + '/proxy?q=' + url, options)
+            .then(json => json.text())
+            .then((res) => {
+                resolve(res);
+            })
+            .catch((err) => {
+                console.log(err);
+                reject(err);
+            });
     });
 };
 

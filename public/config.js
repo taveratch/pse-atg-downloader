@@ -1,1 +1,0 @@
-window.PROXY_URL = 'https://atg.padungsilpa.group/proxy?q=';
