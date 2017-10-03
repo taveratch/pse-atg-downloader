@@ -1,8 +1,14 @@
-import express from 'express';
-import proxy from 'http-proxy-middleware';
-import cors from 'cors';
-import url from 'url';
-import config from './config.json';
+// import express from 'express';
+// import proxy from 'http-proxy-middleware';
+// import cors from 'cors';
+// import url from 'url';
+// import config from './config.json';
+
+let express = require('express');
+let proxy = require('http-proxy-middleware');
+let cors = require('cors');
+let url = require('url');
+let config = require('./config.json');
 
 let app = express();
 const PORT = 5000;
