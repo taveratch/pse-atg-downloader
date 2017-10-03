@@ -47,12 +47,10 @@ let options = {
 };
 app.use('/proxy', proxy(options));
 
-if(production) {
-    app.use(express.static('build'));
-    app.get('*', function(req, res) {
-        res.sendfile('build/index.html');
-    });    
-}
+app.use(express.static('build'));
+app.get('*', function(req, res) {
+    res.sendfile('build/index.html');
+});    
 
 app.listen(PORT, () => {
     console.log(`Proxy server is running on port ${PORT}`);

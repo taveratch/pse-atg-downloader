@@ -87,12 +87,12 @@
   "scripts": {
     "dev": "NODE_ENV=development concurrently \"npm run client\" \"npm run proxy-server\"",
     "client": "NODE_PATH=. node scripts/start.js",
-    "proxy-server": "NODE_PATH=. nodemon --exec npm run babel-node -- proxy-server/server.js",
+    "proxy-server": "nodemon --exec npm run babel-node -- proxy-server/server.js",
     "server": "NODE_PATH=. nodemon --exec npm run babel-node -- server/",
     "babel-node": "babel-node",
     "build": "NODE_PATH=. node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
-    "start": "NODE_ENV=production NODE_PATH=. concurrently \"npm run proxy-server\""
+    "start": "npm run proxy-server"
   },
   "jest": {
     "collectCoverageFrom": [
