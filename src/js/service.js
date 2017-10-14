@@ -5,8 +5,13 @@ import JSZip from 'jszip';
 import FileSaver from 'file-saver';
 import 'babel-core/register';
 import 'babel-polyfill';
+import csv from 'csvtojson';
+
+import fileFormatter from 'src/js/file-formatter/src/formatter';
 
 let proxyPrefix = process.env.NODE_ENV !== 'production' ? 'http://localhost:5000' : '';
+const headers = ['Date', 'Time', 'T.ID', 'GP.Vol', 'NP.Vol', 'Wat.Vol', 'GT.Vol', 'NT.Vol', 'Prd.Lvl', 'Wat.Lvl', 'Ullage', 'Avg.Tmp', 'Prd.Wgt', 'Prd.Dens'];
+
 let services = {
     getInventoryList: (url) => {
         return new Promise((resolve, reject) => {
@@ -41,7 +46,7 @@ let services = {
     }
 };
 
-const downloadInventory = (url) => {
+export const downloadInventory = (url) => {
     return new Promise((resolve, reject) => {
         let options = {
             headers: {
@@ -51,7 +56,8 @@ const downloadInventory = (url) => {
         fetch(proxyPrefix + '/proxy?q=' + url, options)
             .then(json => json.text())
             .then((res) => {
-                resolve(res);
+                let formatted = fileFormatter(res, {useHeader: true});
+                resolve(formatted);
             })
             .catch((err) => {
                 console.log(err);

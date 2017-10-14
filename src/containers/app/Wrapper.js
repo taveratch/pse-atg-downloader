@@ -4,6 +4,7 @@ import vm from 'src/containers/app/viewmodel';
 import write from 'write';
 import $ from 'jquery';
 import _ from 'lodash';
+import Link from 'src/containers/app/Link';
 import service from 'src/js/service';
 export default class Wrapper extends React.Component {
     constructor(props) {
@@ -96,7 +97,7 @@ export default class Wrapper extends React.Component {
                                     {item.name}
                                     <div className="pull-right pull-top full-height flex flex-center flex-middle margin-right">
                                         {self.renderProgressbar(item.name)}
-                                        <a href={vm.insertHeader(item.url)} download >Download</a>
+                                        <Link url={item.url} name={item.name} />
                                     </div>
                                 </ul>;
                             })
