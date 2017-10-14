@@ -15,7 +15,7 @@ class Link extends React.Component {
 
     onClick() {
         let { url, name } = this.props;
-        downloadInventory(url)
+        downloadInventory(url, { useHeader: true })
             .then(res => {
                 this.download(name, res);
             });

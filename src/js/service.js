@@ -33,12 +33,15 @@ let services = {
     },
     downloadAllInventories: async (inventories, dispatcher) => {
         var zip = new JSZip();
+        let result = '';
         for (let i = 0; i < inventories.length; i++) {
             let item = inventories[i];
-            let res = await downloadInventory(item.url);
-            zip.file(item.name, res);
+            let res = await downloadInventory(item.url, { useHeader: i === 0 });
+            result += res + '\n';
+            // zip.file(item.name, res);
             dispatcher({ type: 'downloaded_inventory', data: item.name });
         }
+        zip.file('inventories.csv', result);
         zip.generateAsync({ type: 'blob' })
             .then(function (content) {
                 FileSaver.saveAs(content, 'inventories.zip');
@@ -46,7 +49,7 @@ let services = {
     }
 };
 
-export const downloadInventory = (url) => {
+export const downloadInventory = (url, { useHeader }) => {
     return new Promise((resolve, reject) => {
         let options = {
             headers: {
@@ -56,7 +59,7 @@ export const downloadInventory = (url) => {
         fetch(proxyPrefix + '/proxy?q=' + url, options)
             .then(json => json.text())
             .then((res) => {
-                let formatted = fileFormatter(res, {useHeader: true});
+                let formatted = fileFormatter(res, { useHeader });
                 resolve(formatted);
             })
             .catch((err) => {
