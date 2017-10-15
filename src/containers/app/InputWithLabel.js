@@ -10,7 +10,7 @@ class InputWithLabel extends React.Component {
         return (
             <div style={this.props.style}>
                 <span>{this.props.label}</span>
-                <input style={style.inputStyle} className='form-control' id={this.props.elementId} type="text" />
+                <input style={style.inputStyle} className='form-control' id={this.props.elementId} type="text" defaultValue={this.props.text}/>
             </div>
         );
     }

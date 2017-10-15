@@ -1,5 +1,6 @@
 import React from 'react';
 import { Well, Label, Row, Col, Button, ListGroup, ListGroupItem, ProgressBar } from 'react-bootstrap';
+import cookie from 'js-cookie';
 import vm from 'src/containers/app/viewmodel';
 import write from 'write';
 import $ from 'jquery';
@@ -33,6 +34,7 @@ export default class Wrapper extends React.Component {
         let url = $('#url')[0].value;
         service.getInventoryList(url)
             .then((res) => {
+                cookie.set('url', url);
                 this.dispatch({ type: 'load_inventory', data: res, url: service.urlValidator(url) });
             })
             .catch((err) => {
@@ -80,10 +82,10 @@ export default class Wrapper extends React.Component {
 
     render() {
         return (
-            <div className='p-5'>
+            <div className='p-5 d-flex flex-column' style={{minHeight: '100vh'}}>
                 <h1><b>Search</b></h1>
                 <div className='d-flex'>
-                    <InputWithLabel elementId='url' style={style.urlInputStyle} label='Url' />
+                    <InputWithLabel elementId='url' style={style.urlInputStyle} text={cookie.get('url') || ''} label='Url' />
                     <div className='d-flex'>
                         <button className="btn btn-second margin-left align-self-end" onClick={this.read}>Read</button>
                     </div>
@@ -91,6 +93,13 @@ export default class Wrapper extends React.Component {
                 {this.state.error && <ErrorMessage />}
                 <br />
                 {this.state.inventories.length !== 0 && <InventoryList inventories={this.state.inventories} />}
+                <footer className="footer mt-auto">
+                    <div className="container">
+                        <span>
+                            This software is a property of Padungsilpa Group.<br></br>© Copyright 2017 PADUNGSILPA GROUP All right reserved.
+                        </span>
+                    </div>
+                </footer>
             </div>
             // <div className='d-flex align-items-center justify-content-center h-100 bg-info'>
             //     <div className='col-md-10 col-lg-10 col-sm-10 col-11 box-shadow-heavy bg-faded p-4' style={{ height: '85%', overflow: 'auto', background: 'white' }}>
@@ -117,11 +126,11 @@ export default class Wrapper extends React.Component {
             //             }
             //         </ul>
             //     </div>
-            //     {/* <footer className="footer">
-            //         <div className="container">
-            //             <p className="text-muted">This software is a property of Padungsilpa Group.<br></br>© Copyright 2017 PADUNGSILPA GROUP All right reserved.</p>
-            //         </div>
-            //     </footer> */}
+            // {/* <footer className="footer">
+            //     <div className="container">
+            //         <p className="text-muted">This software is a property of Padungsilpa Group.<br></br>© Copyright 2017 PADUNGSILPA GROUP All right reserved.</p>
+            //     </div>
+            // </footer> */}
             // </div>
         );
     }

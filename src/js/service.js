@@ -21,7 +21,11 @@ let services = {
                 }
             };
             fetch(proxyPrefix + '/proxy?q=' + urlValidator(url), options)
-                .then(json => json.text())
+                .then(json => {
+                    if(json.ok)
+                        return json.text();
+                    throw new Error(json);
+                })
                 .then((res) => {
                     resolve(res);
                 })

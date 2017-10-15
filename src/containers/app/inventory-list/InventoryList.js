@@ -9,6 +9,10 @@ const headers = ['Date', 'Download'];
 const style = {
     thead: {
         background: '#F7F7F7'
+    },
+    progress: {
+        background: '#B4E0FA',
+        width: '100%'
     }
 };
 class InventoryList extends React.Component {
@@ -32,11 +36,14 @@ class InventoryList extends React.Component {
                             inventories.map((inventory, i) => (
                                 <tr>
                                     <td className='text-right pr-5'>{inventory.dateStr}</td>
-                                    <td className='pl-5'>
+                                    <td className='pl-5 pr-3'>
                                         <div className='d-flex'>
                                             <DownloadButton url={inventory.url} name={inventory.name} />
-                                            <div style={{flex: 1}} id={`loading-${inventory.name.replace('.','')}`} className='loading-spin hidden d-flex justify-content-end align-items-center pr-5'>
-                                                <ReactLoading type='spin' width={24} height={24} color='#007ACE' />
+
+                                            <div style={{ flex: 1 }} id={`loading-${inventory.name.replace('.', '')}`} className='loading-spin hidden d-flex justify-content-end align-items-center'>
+                                                <div className="progress">
+                                                    <div style={style.progress} className="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">Downloading...</div>
+                                                </div>
                                             </div>
                                         </div>
                                     </td>
