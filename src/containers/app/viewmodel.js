@@ -46,10 +46,12 @@ const dataFormatter = (raw, domain) => {
         let fileName = url.substring(11);
         // url = \Inventory\I10_20170916.csv
         // fileName = I10_20170916.csv
+        let date = getDateFromFileName(fileName);
         data.push({
             url: getDomain(domain) + url,
             name: fileName,
-            dateStr: getDateFromFileName(fileName)
+            dateStr: date.dateStr,
+            date: date.date
         });
     });
     data.pop();
@@ -61,7 +63,7 @@ const getDateFromFileName = fileName => {
     let dotPosition = fileName.indexOf('.');
     let dateStr = fileName.substring(underScorePosition + 1, dotPosition);
     let date = moment(dateStr);
-    return date.format('D/MM/YYYY');
+    return {dateStr: date.format('D/MM/YYYY'), date};
 };
 
 const getDomain = (url) => {

@@ -1,7 +1,13 @@
 import React from 'react';
+import moment from 'moment';
+import _ from 'lodash';
+import $ from 'jquery';
 import DownloadImg from 'src/assets/images/download-white.svg';
 import service from 'src/js/service';
 import InputWithLabel from 'src/containers/app/InputWithLabel';
+import DatePicker from 'react-datepicker';
+
+import 'react-datepicker/dist/react-datepicker.css';
 
 const style = {
     buttonStyle: {
@@ -13,10 +19,15 @@ class Controls extends React.Component {
 
     constructor(props) {
         super(props);
-        this.downloadTypes = ['Hourly', 'Daily'];
+        this.downloadTypes = ['Every', 'Hourly', 'Daily'];
+        this.minDate = moment(_.first(props.inventories).date);
+        this.maxDate = moment(_.last(props.inventories).date);
         this.state = {
-            downloadType: 0
+            downloadType: 0,
+            startDate: moment(_.first(props.inventories).date),
+            endDate: moment(_.last(props.inventories).date)
         };
+
     }
 
     changeDownloadType(type) {
@@ -26,9 +37,22 @@ class Controls extends React.Component {
     }
 
     downloadAll() {
-        service.downloadAllInventories(this.props.inventories);
+        $('.loading-spin').removeClass('hidden');
+        service.downloadAllInventories(this.props.inventories, undefined, this.state);
     }
 
+    handleStartDateChange(date) {
+        this.setState({
+            startDate: date
+        });
+    }
+
+    handleEndDateChange(date) {
+        this.setState({
+            endDate: date
+        });
+    }
+    
     render() {
         return (
             <div className='d-flex align-items-end'>
@@ -48,7 +72,17 @@ class Controls extends React.Component {
                     </div>
                 </div>
                 <div className='ml-4'>
-                    <InputWithLabel elementId='from-date' label='From' />
+                    <div>
+                        <span>From</span>
+                        <DatePicker minDate={this.minDate} maxDate={this.maxDate} dateFormat='DD/MM/YYYY' className='form-control' selected={this.state.startDate} onChange={this.handleStartDateChange.bind(this)} />
+                    </div>
+                </div>
+
+                <div className='ml-4'>
+                    <div>
+                        <span>To</span>
+                        <DatePicker minDate={this.minDate} maxDate={this.maxDate} dateFormat='DD/MM/YYYY' className='form-control' selected={this.state.endDate} onChange={this.handleEndDateChange.bind(this)} />
+                    </div>
                 </div>
             </div>
         );

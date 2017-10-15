@@ -110,6 +110,7 @@ html,body {
 th, td {
   padding-top: 10px;
   padding-bottom: 10px;
+  width: 50%;
 }
 
 tr {
@@ -118,4 +119,12 @@ tr {
 
 tr:hover {
   background: #ECF9F8;
+}
+
+.form-control {
+  height: 38px;
+}
+
+.hidden {
+  display: none !important;
 }

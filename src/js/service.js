@@ -31,25 +31,30 @@ let services = {
                 });
         });
     },
-    downloadAllInventories: async (inventories, dispatcher = () => {}) => {
+
+    downloadAllInventories: async (inventories, dispatcher = () => { }, { downloadType, startDate, endDate }) => {
         var zip = new JSZip();
         let result = '';
         for (let i = 0; i < inventories.length; i++) {
             let item = inventories[i];
-            let res = await downloadInventory(item.url, { useHeader: i === 0 });
-            result += res + '\n';
+            if(item.date.isBefore(startDate)) continue;
+            if(item.date.isAfter(endDate)) continue;
+            let res = await downloadInventory(item.url, { useHeader: i === 0, downloadType });
+            result += res;
+            $(`#loading-${item.name.replace('.','')}`).addClass('hidden');
             // zip.file(item.name, res);
             dispatcher({ type: 'downloaded_inventory', data: item.name });
         }
         zip.file('inventories.csv', result);
         zip.generateAsync({ type: 'blob' })
             .then(function (content) {
+                $('.loading-spin').addClass('hidden');
                 FileSaver.saveAs(content, 'inventories.zip');
             });
     }
 };
 
-export const downloadInventory = (url, { useHeader }) => {
+export const downloadInventory = (url, { useHeader, downloadType }) => {
     return new Promise((resolve, reject) => {
         let options = {
             headers: {
@@ -59,7 +64,7 @@ export const downloadInventory = (url, { useHeader }) => {
         fetch(proxyPrefix + '/proxy?q=' + url, options)
             .then(json => json.text())
             .then((res) => {
-                let formatted = fileFormatter(res, { useHeader });
+                let formatted = fileFormatter(res, { useHeader, downloadType });
                 resolve(formatted);
             })
             .catch((err) => {

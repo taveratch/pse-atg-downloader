@@ -1,4 +1,6 @@
 import React from 'react';
+import ReactLoading from 'react-loading';
+
 import DownloadButton from 'src/containers/app/inventory-list/DownloadButton';
 import Controls from './Controls';
 
@@ -22,6 +24,7 @@ class InventoryList extends React.Component {
                         <tr className='pt-4 pb-4'>
                             <th className='text-right pr-5'>Date</th>
                             <th className='pl-5'>Download</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -29,7 +32,14 @@ class InventoryList extends React.Component {
                             inventories.map((inventory, i) => (
                                 <tr>
                                     <td className='text-right pr-5'>{inventory.dateStr}</td>
-                                    <td className='pl-5'><DownloadButton url={inventory.url} name={inventory.name} /></td>
+                                    <td className='pl-5'>
+                                        <div className='d-flex'>
+                                            <DownloadButton url={inventory.url} name={inventory.name} />
+                                            <div style={{flex: 1}} id={`loading-${inventory.name.replace('.','')}`} className='loading-spin hidden d-flex justify-content-end align-items-center pr-5'>
+                                                <ReactLoading type='spin' width={24} height={24} color='#007ACE' />
+                                            </div>
+                                        </div>
+                                    </td>
                                 </tr>
                             ))
                         }

@@ -1,4 +1,5 @@
 import React from 'react';
+import $ from 'jquery';
 
 import DownloadImg from 'src/assets/images/download.svg';
 import { downloadInventory } from 'src/js/service';
@@ -13,7 +14,8 @@ const style = {
     }
 };
 class DownloadButton extends React.Component {
-    
+
+
     download(fileName, text) {
         var element = document.createElement('a');
         element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
@@ -26,16 +28,18 @@ class DownloadButton extends React.Component {
 
     onClick() {
         let { url, name } = this.props;
+        $(`#loading-${name.replace('.','')}`).removeClass('hidden');
         downloadInventory(url, { useHeader: true })
             .then(res => {
+                $(`#loading-${name.replace('.','')}`).addClass('hidden');
                 this.download(name, res);
             });
     }
 
     render() {
         return (
-            <div onClick={this.onClick.bind(this)} style={style.container} className='d-flex justify-content-center align-items-center'>
-                <img src={DownloadImg} alt=""/>
+            <div style={style.container} className='d-flex justify-content-center align-items-center' onClick={this.onClick.bind(this)}>
+                <img src={DownloadImg} alt="" />
             </div>
         );
     }
