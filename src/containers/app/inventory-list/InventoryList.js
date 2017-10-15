@@ -34,7 +34,7 @@ class InventoryList extends React.Component {
                     <tbody>
                         {
                             inventories.map((inventory, i) => (
-                                <tr>
+                                <tr key={i}>
                                     <td className='text-right pr-5'>{inventory.dateStr}</td>
                                     <td className='pl-5 pr-3'>
                                         <div className='d-flex'>

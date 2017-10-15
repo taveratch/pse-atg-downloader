@@ -67,7 +67,7 @@ class Controls extends React.Component {
 
                     <div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
                         {
-                            this.downloadTypes.map((type, i) => <span className='dropdown-item' onClick={this.changeDownloadType.bind(this, i)}>{type}</span>)
+                            this.downloadTypes.map((type, i) => <span key={i} className='dropdown-item' onClick={this.changeDownloadType.bind(this, i)}>{type}</span>)
                         }
                     </div>
                 </div>
