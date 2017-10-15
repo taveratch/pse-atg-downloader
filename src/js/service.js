@@ -31,7 +31,7 @@ let services = {
                 });
         });
     },
-    downloadAllInventories: async (inventories, dispatcher) => {
+    downloadAllInventories: async (inventories, dispatcher = () => {}) => {
         var zip = new JSZip();
         let result = '';
         for (let i = 0; i < inventories.length; i++) {

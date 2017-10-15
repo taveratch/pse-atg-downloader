@@ -1,5 +1,7 @@
 import React from 'react';
 import DownloadImg from 'src/assets/images/download-white.svg';
+import service from 'src/js/service';
+import InputWithLabel from 'src/containers/app/InputWithLabel';
 
 const style = {
     buttonStyle: {
@@ -23,10 +25,14 @@ class Controls extends React.Component {
         });
     }
 
+    downloadAll() {
+        service.downloadAllInventories(this.props.inventories);
+    }
+
     render() {
         return (
-            <div className='d-flex'>
-                <button style={style.buttonStyle} className="btn btn-second align-self-end" onClick={this.read}>
+            <div className='d-flex align-items-end'>
+                <button style={style.buttonStyle} className="btn btn-second align-self-end" onClick={this.downloadAll.bind(this)}>
                     Download all
                     <img className='ml-2' src={DownloadImg} alt="" />
                 </button>
@@ -40,6 +46,9 @@ class Controls extends React.Component {
                             this.downloadTypes.map((type, i) => <span className='dropdown-item' onClick={this.changeDownloadType.bind(this, i)}>{type}</span>)
                         }
                     </div>
+                </div>
+                <div className='ml-4'>
+                    <InputWithLabel elementId='from-date' label='From' />
                 </div>
             </div>
         );

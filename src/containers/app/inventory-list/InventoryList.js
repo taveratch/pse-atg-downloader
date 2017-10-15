@@ -15,8 +15,8 @@ class InventoryList extends React.Component {
         return (
             <div>
                 <h1><b>Inventory</b></h1>
-                <Controls />
-                <br/>
+                <Controls inventories={inventories} />
+                <br />
                 <table className='w-100'>
                     <thead style={style.thead}>
                         <tr className='pt-4 pb-4'>
