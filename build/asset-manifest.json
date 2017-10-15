@@ -1,8 +1,10 @@
 {
-  "main.css": "static/css/main.f1c009e0.css",
-  "main.css.map": "static/css/main.f1c009e0.css.map",
-  "main.js": "static/js/main.477eedfa.js",
-  "main.js.map": "static/js/main.477eedfa.js.map",
+  "main.css": "static/css/main.755c5892.css",
+  "main.css.map": "static/css/main.755c5892.css.map",
+  "main.js": "static/js/main.7dd1619b.js",
+  "main.js.map": "static/js/main.7dd1619b.js.map",
   "static/media/SukhumvitSet-Bold.ttf": "static/media/SukhumvitSet-Bold.cf83ce0a.ttf",
-  "static/media/SukhumvitSet-Text.ttf": "static/media/SukhumvitSet-Text.69fc4f0f.ttf"
+  "static/media/SukhumvitSet-Text.ttf": "static/media/SukhumvitSet-Text.69fc4f0f.ttf",
+  "static/media/download-white.svg": "static/media/download-white.cfc88298.svg",
+  "static/media/download.svg": "static/media/download.70d7e37c.svg"
 }
