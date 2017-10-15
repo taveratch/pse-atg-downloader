@@ -98,3 +98,24 @@ html,body {
 .form-control::placeholder {
   color: rgba(0,0,0,0.2);
 }
+
+.btn-second {
+  background: #47C1BF
+}
+
+.btn {
+  cursor: pointer
+}
+
+th, td {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+tr {
+  transition: 0.3s;
+}
+
+tr:hover {
+  background: #ECF9F8;
+}

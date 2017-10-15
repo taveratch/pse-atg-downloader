@@ -1,4 +1,6 @@
 import _ from 'lodash';
+import moment from 'moment';
+
 let vm = (state, action) => {
     switch (action.type) {
     case 'init':
@@ -37,22 +39,35 @@ let vm = (state, action) => {
 const dataFormatter = (raw, domain) => {
     let data = [];
     let lines = raw.split('\n');
-    lines.splice(0,2);
+    lines.splice(0, 2);
     _.map(lines, (line, i) => {
+        // line = mmc:0:\Inventory\I10_20170916.csv
         let url = line.substring(6);
+        let fileName = url.substring(11);
+        // url = \Inventory\I10_20170916.csv
+        // fileName = I10_20170916.csv
         data.push({
             url: getDomain(domain) + url,
-            name: url.substring(11)
+            name: fileName,
+            dateStr: getDateFromFileName(fileName)
         });
     });
     data.pop();
     return data;
 };
 
+const getDateFromFileName = fileName => {
+    let underScorePosition = fileName.indexOf('_');
+    let dotPosition = fileName.indexOf('.');
+    let dateStr = fileName.substring(underScorePosition + 1, dotPosition);
+    let date = moment(dateStr);
+    return date.format('D/MM/YYYY');
+};
+
 const getDomain = (url) => {
     let first = url.indexOf('/');
-    let third = url.indexOf('/', first+2);
-    return url.substring(0,third);
+    let third = url.indexOf('/', first + 2);
+    return url.substring(0, third);
 };
 
 const insertHeader = (url) => {
