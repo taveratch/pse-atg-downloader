@@ -6,7 +6,7 @@ import $ from 'jquery';
 import _ from 'lodash';
 import Link from 'src/containers/app/Link';
 import InputWithLabel from 'src/containers/app/InputWithLabel';
-import InventoryList from 'src/containers/app/InventoryList';
+import InventoryList from 'src/containers/app/inventory-list/InventoryList';
 import ErrorMessage from 'src/containers/app/ErrorMessage';
 import service from 'src/js/service';
 
@@ -16,6 +16,7 @@ const style = {
         flex: 1
     }
 };
+
 export default class Wrapper extends React.Component {
     constructor(props) {
         super(props);

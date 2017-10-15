@@ -1,5 +1,6 @@
 import React from 'react';
-import DownloadButton from 'src/containers/app/DownloadButton';
+import DownloadButton from 'src/containers/app/inventory-list/DownloadButton';
+import Controls from './Controls';
 
 const headers = ['Date', 'Download'];
 
@@ -14,6 +15,8 @@ class InventoryList extends React.Component {
         return (
             <div>
                 <h1><b>Inventory</b></h1>
+                <Controls />
+                <br/>
                 <table className='w-100'>
                     <thead style={style.thead}>
                         <tr className='pt-4 pb-4'>
