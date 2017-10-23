@@ -1,12 +1,12 @@
-/*eslint no-undef: "off"*/
-import $ from 'jquery';
-import _ from 'lodash';
-import JSZip from 'jszip';
-import FileSaver from 'file-saver';
 import 'babel-core/register';
 import 'babel-polyfill';
-import csv from 'csvtojson';
 
+/*eslint no-undef: "off"*/
+import $ from 'jquery';
+import FileSaver from 'file-saver';
+import JSZip from 'jszip';
+import _ from 'lodash';
+import csv from 'csvtojson';
 import fileFormatter from 'src/js/file-formatter/src/formatter';
 
 let proxyPrefix = process.env.NODE_ENV !== 'production' ? 'http://localhost:5000' : '';
@@ -49,12 +49,9 @@ let services = {
             // zip.file(item.name, res);
             dispatcher({ type: 'downloaded_inventory', data: item.name });
         }
-        zip.file('inventories.csv', result);
-        zip.generateAsync({ type: 'blob' })
-            .then(function (content) {
-                $('.loading-spin').addClass('hidden');
-                FileSaver.saveAs(content, 'inventories.zip');
-            });
+        $('.loading-spin').addClass('hidden');
+        const blob = new Blob([result], {type: 'text/plain;charset=utf-8'});
+        FileSaver.saveAs(blob, `inventories-${startDate.format('DDMMYYYY')}-${endDate.format('DDMMYYYY')}.csv`);
     }
 };
 
